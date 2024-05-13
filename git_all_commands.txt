@@ -387,4 +387,94 @@ To github.com:engr-nasir-uddin/learning-git.git
 
 # 5. pull and merge commits from github (branch>location-version>contribute>pull request>merge)
 
+#to undo uncommited change in file 'friend_list.txt' 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore friend_list.txt
+
+#to undo uncommited change in directory 'learning-git' 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore learning-git
+
+#to undo uncommited all the changes made 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore .
+
+#to undo uncommited change in file 'friend_list.txt' after staging
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore --staged friend_list.txt
+
+#to undo uncommited change in directory 'learning-git' after staging
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore --staged learning-git
+
+#to undo uncommited all the changes made after staging
+┌──(uddin㉿nasir)-[~/git]
+└─$ git restore --staged .
+
+# to keep a branch aside before completion
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash
+
+# to see the stash list 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash list
+
+# to return back a branch kept aside by 'git stash' command
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash pop
+
+# to return back 2nd branch kept aside by 'git stash' command
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash pop stash@{2}
+
+# to return back a branch kept aside by 'git stash' command and keeping a copy in stash list
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash apply
+
+# to return back 3rd branch kept aside by 'git stash' command and keeping a copy in stash list
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash apply stash@{3}
+
+# to clear stash list
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash clear
+
+# to remove 1st item from stash list
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash drop stash@{1}
+
+## N.B: stash only tracks the committed files and directories. If you want to stash files and directories including untracked (uncommitted) files, use the following command
+
+# to stash files and directories including uncommitted
+┌──(uddin㉿nasir)-[~/git]
+└─$ git stash -u
+
+# to undo all the changes after commit with the last change commit id '9d8e82a'
+┌──(uddin㉿nasir)-[~/git]
+└─$ git reset 9d8e82a
+
+# to undo all the changes permanently after commit with the last change commit id '9d8e82a'
+┌──(uddin㉿nasir)-[~/git]
+└─$ git reset 9d8e82a --hard
+## N.B: 'git reset' command doesn't keep any log, to keep log of undoing changes of commited files and directory, better use 'revert' command in place of 'reset'.
+
+# 'git revert' command syntax with the commit id '9d8e82a'
+──(uddin㉿nasir)-[~/git]
+└─$ git reset 9d8e82a
+
+# 'git rebase' command to take changes from 'main' branch to 'feature' branch at the time of working in 'feature' branch to merge all the changes of both 'main' and 'feature' branches. N.B: keep in mind that it changes the hash (commit id) of base branch with new one, therefore be aware of using at the time of remote host multiple collaborator shared files.
+
+# to merge/rebase 'main' with 'feature' branch at the time of checkout at 'feature' branch
+──(uddin㉿nasir)-[~/git]
+└─$ git rebase main
+
+# 'git merge new-feature --squash' command to clean earlier commit history of 'new-feature' branch
+
+──(uddin㉿nasir)-[~/git]
+└─$ git merge new-feature --squash
+──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "new feature introduced"
+
+
+
 
