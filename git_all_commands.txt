@@ -1,0 +1,390 @@
+#to see installed git version
+git --version
+
+# set username and email into global configuration (for all git project)
+┌──(uddin㉿nasir)-[~]
+└─$ git config --global user.name "Md. Nasir Uddin"
+                                                       
+┌──(uddin㉿nasir)-[~]
+└─$ git config --global user.email "engr.nasiruddin@gmail.com"
+
+# set username and email into current configuration (for running project only)
+┌──(uddin㉿nasir)-[~]
+└─$ git config user.name "Md. Nasir Uddin"
+                                                       
+┌──(uddin㉿nasir)-[~]
+└─$ git config user.email "engr.nasiruddin@gmail.com"
+
+#to initialize git in '/home/uddin/git' directory
+┌──(uddin㉿nasir)-[~/git]
+└─$ git init
+
+#to check the status of files in '/home/uddin/git' directory
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status 
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	QnA.txt
+	friend_list.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+# here, QnA.txt and friend_list.txt files are existed but not tracked 
+
+#to take 'QnA.txt' file into staging area (to track file/version)
+
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add QnA.txt 
+
+#to stage or track all files of current directory
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add .  
+
+#OR
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add --all
+# (use "git rm --cached <file>..." to unstage)
+
+#to commit QnA.txt and friend_list.txt with a message "QnA and Friend List added"
+┌──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "QnA and Friend List added"
+
+#to commit updated files with new message "contact number added" message
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add --all
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "contact number added"     
+[master 747274e] contact number added
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status                          
+On branch master
+nothing to commit, working tree clean
+
+#to change file again and commit with message "contact number removed"
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add --all 
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "contact number removed"
+[master 0d38322] contact number removed
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status                            
+On branch master
+nothing to commit, working tree clean
+
+#to check all commit history
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log  
+
+#to see all commit history in brief
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log --oneline 
+0d38322 (HEAD -> master) contact number removed
+747274e contact number added
+3f7c182 QnA and Friend List added
+
+#returning to the version "747274e contact number added" 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout 747274e                  
+Note: switching to '747274e'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 747274e contact number added
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log --oneline   
+747274e (HEAD) contact number added
+3f7c182 QnA and Friend List added
+
+#returning back to master (back to current version)
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout master 
+Previous HEAD position was 747274e contact number added
+Switched to branch 'master'
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log --oneline  
+0d38322 (HEAD -> master) contact number removed
+747274e contact number added
+3f7c182 QnA and Friend List added
+
+#creating branch named "table-version"
+┌──(uddin㉿nasir)-[~/git]
+└─$ git branch table-version                                                      
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log --oneline       
+0d38322 (HEAD -> master, table-version) contact number removed
+747274e contact number added
+3f7c182 QnA and Friend List added
+
+#to see all available version
+┌──(uddin㉿nasir)-[~/git]
+└─$ git branch              
+* master
+  table-version
+
+#to see current git branch (current head pointing to branch)
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status 
+On branch master
+nothing to commit, working tree clean
+
+#to enter into newly created 'table-version' branch
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout table-version 
+Switched to branch 'table-version'
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status 
+On branch table-version
+nothing to commit, working tree clean
+
+#creating a new branch 'table-version-2' and checkout to it with a single command
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout -b table-version-2
+Switched to a new branch 'table-version-2'
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git branch                     
+  master
+  table-version
+* table-version-2
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status 
+On branch table-version-2
+nothing to commit, working tree clean
+
+#update a file from branch 'table-version' then marge it with 'master' branch
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout table-version     
+Switched to branch 'table-version'
+┌──(uddin㉿nasir)-[~/git]
+└─$ git branch                 
+  master
+* table-version
+  table-version-2
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status 
+On branch table-version
+nothing to commit, working tree clean
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status #git status after modifying file
+On branch table-version
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   friend_list.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add --all
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "table added"           
+[table-version 6a86a7e] table added
+ 1 file changed, 31 insertions(+), 8 deletions(-)
+┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout master        
+Switched to branch 'master'
+
+# N.B: if you don't want to merge or update change just checkout to master and delete version by 'git branch -D table-version' 
+
+#for merging current branch 'master' with the branch 'table-version'
+┌──(uddin㉿nasir)-[~/git]
+└─$ git merge table-version
+Updating 0d38322..6a86a7e
+Fast-forward
+ friend_list.txt | 39 +++++++++++++++++++++++++-------
+ 1 file changed, 31 insertions(+), 8 deletions(-)
+
+#to see the difference of two commit result 'contact number removed' and 'contact number added' 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git log --oneline 
+6a86a7e (HEAD -> master, table-version) table added
+0d38322 contact number removed
+747274e contact number added
+3f7c182 QnA and Friend List added
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git diff 0d38322 747274e
+diff --git a/friend_list.txt b/friend_list.txt
+index 34279c5..28cc16a 100644
+--- a/friend_list.txt
++++ b/friend_list.txt
+@@ -1,8 +1,8 @@
+-Dibakar Sutradhar
+-S M Shahadat Hossai
+-Reduanul Houque Munna
+-Ar Rolin
+-Niraj Paudel
+-Tanvir Faisal Moon
+-Sagar Neupane
+-Yadav Lamechane
++Dibakar Sutradhar- 01856895696
++S M Shahadat Hossain-0258956699
++Reduanul Houque Munna-054495+5+
++Ar Rolin- 02148462694
++Niraj Paudel- 056494993231355
++Tanvir Faisal Moon- 0556484648
++Sagar Neupane-0511446496
++Yadav Lamechane-02148494
+
+
+#configure ssh for git push
+# 1. check ssh key existed or not
+┌──(uddin㉿nasir)-[~/git]
+└─$ ls -al ~/.ssh 
+total 24
+drwx------  2 uddin uddin 4096 May 13 15:37 .
+drwx------ 26 uddin uddin 4096 May 13 14:20 ..
+-rw-------  1 uddin uddin 3389 May 13 14:20 id_rsa
+-rw-r--r--  1 uddin uddin  751 May 13 14:20 id_rsa.pub
+-rw-------  1 uddin uddin  978 May 13 15:37 known_hosts
+-rw-r--r--  1 uddin uddin  142 May 13 15:37 known_hosts.old
+
+# 2. if exists copy ssh public key from 'id_rsa.pub' file, if not execute the following commands to generate ssh-key for 'engr.nasiruddin@gmail.com'
+
+┌──(uddin㉿nasir)-[~/git]
+└─$ ssh-keygen -t rsa -b 4096 -C "engr.nasiruddin@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/uddin/.ssh/id_rsa): 
+Created directory '/home/uddin/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/uddin/.ssh/id_rsa
+Your public key has been saved in /home/uddin/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:aAKQi9CkyIXP6rIjEKg7T2RFTSoEiep7QY3qui0BVlw engr.nasiruddin@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|+*=.oE.          |
+|B=o+ ..          |
+|Bo* =            |
+|B. O . .         |
+|=.* . o S        |
+|+* . o           |
+|+oo .            |
+|B* .             |
+|BB+              |
++----[SHA256]-----+
+                      
+# 3. run ssh agent in the background 
+┌──(uddin㉿nasir)-[~/git]
+└─$ eval "$(ssh-agent -s)"
+Agent pid 6259
+                  
+# 4. adding newly created ssh private key (.ssh/id_rsa) to the ssh agent
+┌──(uddin㉿nasir)-[~/git]
+└─$ ssh-add ~/git/.ssh/id_rsa
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0755 for '/home/uddin/git' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+.ssh/id_rsa: No such file or directory
+
+# 5. copy '~/.ssh/id_rsa.pub' key and paste in github 'settings>ssh & GPG keys>New SSH key:
+
+#push local files (both master and table-version) to github 
+┌──(uddin㉿nasir)-[~/git]
+└─$ git remote add origin git@github.com:engr-nasir-uddin/learning-git.git
+┌──(uddin㉿nasir)-[~/git]
+└─$ git push origin master 
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Enumerating objects: 13, done.
+Counting objects: 100% (13/13), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (13/13), 1.46 KiB | 75.00 KiB/s, done.
+Total 13 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:engr-nasir-uddin/learning-git.git
+ * [new branch]      master -> master
+
+┌──(uddin㉿nasir)-[~/git]
+└─$ git push origin table-version
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'table-version' on GitHub by visiting:
+remote:      https://github.com/engr-nasir-uddin/learning-git/pull/new/table-version
+remote: 
+To github.com:engr-nasir-uddin/learning-git.git
+ * [new branch]      table-version -> table-version
+ 
+ 
+ # pull request in github 
+ # 1. Create a new branch/version 'location-version' and checkout to it
+ ┌──(uddin㉿nasir)-[~/git]
+└─$ git checkout -b location-version
+Switched to a new branch 'location-version'
+                                                       
+ # 2. Update any file of the git directory/project and run following command                                                     
+┌──(uddin㉿nasir)-[~/git]
+└─$ git status
+On branch location-version
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   friend_list.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+#3. commit changes to git with commit message 'location added
+┌──(uddin㉿nasir)-[~/git]
+└─$ git add --all
+                                                       
+┌──(uddin㉿nasir)-[~/git]
+└─$ git commit -m "location added"                   
+[location-version 1301e95] location added
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+#4. push to the github repository
+┌──(uddin㉿nasir)-[~/git]
+└─$ git push origin location-version 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 442 bytes | 147.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'location-version' on GitHub by visiting:
+remote:      https://github.com/engr-nasir-uddin/learning-git/pull/new/location-version
+remote: 
+To github.com:engr-nasir-uddin/learning-git.git
+ * [new branch]      location-version -> location-version
+
+# 5. pull and merge commits from github (branch>location-version>contribute>pull request>merge)
+
+
